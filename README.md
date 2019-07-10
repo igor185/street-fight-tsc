@@ -1,4 +1,4 @@
-# stage-2-es6-for-everyone
+# es6-for-everyone-tsc
 
 ## Hosting
 [Heroku app](https://igor-babin.herokuapp.com/)
