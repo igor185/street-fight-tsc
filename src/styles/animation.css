@@ -1,0 +1,150 @@
+#chooseAttack,
+#chooseDefense {
+    display: none;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 344px;
+}
+
+#up,
+#middle,
+#down,
+#upDef,
+#middleDef,
+#downDef {
+    display: block;
+    background-image: url('https://img.icons8.com/color/40/000000/sword.png');
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+#upDef,
+#middleDef,
+#downDef {
+    background-image: url('https://img.icons8.com/color/40/000000/knight-shield.png');
+}
+
+#up {
+    transform: rotate(20deg);
+}
+
+#middle {
+    transform: rotate(45deg);
+}
+
+#down {
+    transform: rotate(80deg);
+}
+
+@keyframes moveUp {
+    from {
+        right: 0;
+        top: 0;
+    }
+
+    to {
+        top: -25px;
+        right: -25px;
+    }
+}
+
+@keyframes moveMiddle {
+    from {
+        right: 0
+    }
+
+    to {
+        right: -50px;
+    }
+}
+
+@keyframes moveDown {
+    from {
+        right: 0;
+        bottom: 0;
+    }
+
+    to {
+        right: -25px;
+        bottom: -25px;
+    }
+}
+
+@keyframes moveUpDef {
+    from {
+        left: 0;
+        top: 0;
+    }
+
+    to {
+        left: -25px;
+        top: -25px;
+    }
+}
+
+@keyframes moveMiddleDef {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -25px;
+    }
+}
+
+@keyframes moveDownDef {
+    from {
+        left: 0;
+        bottom: 0;
+    }
+
+    to {
+        left: -25px;
+        bottom: -25px;
+    }
+}
+
+
+
+#up:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveUp;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
+
+#middle:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveMiddle;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
+
+#down:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveDown;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
+
+#upDef:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveUpDef;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
+
+#middleDef:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveMiddleDef;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
+
+#downDef:hover {
+    animation-iteration-count: infinite;
+    animation-name: moveDownDef;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+}
