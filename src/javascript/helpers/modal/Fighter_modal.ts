@@ -1,11 +1,15 @@
 import Modal from './Modal'
 import FighterView from '../../fighterView'
+import {Fighter} from "../../Fighter";
+import Preparation from "../../battle/Preparation";
 
 class Fighter_modal extends Modal {
+    fighter: Fighter;
+    preparation;
 
-    constructor(fighter, preparation) {
+    constructor(fighter: Fighter, preparation:Preparation) {
         super();
-        Object.assign(this.fighter = {}, fighter);
+        this.fighter = Object.assign({}, fighter);
         
         this.preparation = preparation;
 
@@ -22,22 +26,22 @@ class Fighter_modal extends Modal {
             tagName: 'div',
             className: 'left'
         });
-        left.append(new FighterView(fighter).element);
+        left.append(new FighterView(fighter).getElement());
 
         let right = this.createElement({
             tagName: 'div',
             className: 'right'
         });
-        right.append(this.createIndicator(this.fighter.attack, 'attack'),
-            this.createIndicator(this.fighter.defense, 'defense'),
-            this.createIndicator(this.fighter.health, 'health'));
+        right.append(this._createIndicator(this.fighter.attack, 'attack'),
+            this._createIndicator(this.fighter.defense, 'defense'),
+            this._createIndicator(this.fighter.health, 'health'));
 
         this.modal.append(left, right);
 
-        this.modal.append(this.createButton());
+        this.modal.append(this._createButton());
     }
 
-    createIndicator(point, name) {
+    private _createIndicator(point, name):HTMLElement {
 
         let elem = this.createElement({
             tagName: 'div',
@@ -101,7 +105,7 @@ class Fighter_modal extends Modal {
         return elem;
     }
 
-    createButton() {
+    private _createButton():HTMLElement{
         let block = this.createElement({
             tagName: 'div',
             className: 'btnBlock'

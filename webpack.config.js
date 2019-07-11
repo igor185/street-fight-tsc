@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  entry: './index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'), 
     filename: 'bundle.js',
@@ -25,6 +25,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.ts?$/,
+        loader: 'ts-loader'
       }
     ]
   },
@@ -32,5 +36,8 @@ module.exports = {
   devServer: {
     inline: true
   },
-  devtool: "source-map"
-}
+  devtool: "source-map",
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
+  }
+};

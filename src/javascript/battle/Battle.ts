@@ -1,10 +1,23 @@
 import FighterView from '../fighterView';
-import Text_modal from '../helpers/modal/Text_modal';
+import {Text_modal} from '../helpers/modal/Text_modal';
 import Indicator from './Indicator';
 import MyRandom from '../services/MyRandom';
+import {Fighter} from "../Fighter";
+import {EWhere} from "./EWhere";
 
-class Battle {
+class Battle{
     count = 0;
+    rootElem: HTMLElement;
+    enemy: Fighter;
+    you: Fighter;
+    generatorAttack: IterableIterator<{ defense: number; attack: number; where: number }>;
+    generatorDefense: IterableIterator<{ defense: number; attack: number; where: number }>;
+    arrows: HTMLDivElement;
+    shields: HTMLDivElement;
+    root: HTMLDivElement;
+    firstIndicator: Indicator;
+    secondIndicator: Indicator;
+    text: HTMLTextAreaElement;
 
     constructor(you, enemy) {
 
@@ -14,18 +27,18 @@ class Battle {
         this.enemy = enemy;
         this.you = you;
 
-        this.init();
+        this._init();
 
         Text_modal.showInformation(`There is information about fight`, `You need to choose which enemy's part of the body to attack, after that your enemy is to decide which part to protect. And then vice versa - he attacks, you defend. Performance of both fighters is displayed in the console at the bottom of the window.`);
 
-        this.log('The fight start!');
+        this._log('The fight start!');
 
     }
 
-    init() {
+    private _init() {
 
-        this.generatorAttack = this.generator(this.you, this.enemy);
-        this.generatorDefense = this.generator(this.enemy, this.you);
+        this.generatorAttack = Battle.generator(this.you, this.enemy);
+        this.generatorDefense = Battle.generator(this.enemy, this.you);
 
         this.arrows = document.createElement('div');
         this.arrows.setAttribute('id', 'chooseAttack');
@@ -39,16 +52,16 @@ class Battle {
         <span id='middleDef'></span>
         <span id='downDef'></span>`;
 
-        this.root = document.createElement('div')
+        this.root = document.createElement('div');
         this.root.setAttribute('id', 'rootElem');
 
-        let header = document.createElement('div');
+        let header: HTMLDivElement = document.createElement('div');
         header.setAttribute('class', 'header');
 
         this.firstIndicator = new Indicator(this.you);
         header.append(this.firstIndicator.elem);
 
-        let span = document.createElement('span')
+        let span:HTMLSpanElement = document.createElement('span');
         span.setAttribute('class', 'headerSpan');
         span.innerHTML = 'VS';
         header.append(span);
@@ -58,12 +71,12 @@ class Battle {
         this.root.append(header);
 
         this.arrows.style.display = 'flex';
-        let fighters = document.createElement('div');
+        let fighters: HTMLDivElement = document.createElement('div');
         fighters.setAttribute('class', 'fighters');
-        fighters.append(new FighterView(this.you).element);
+        fighters.append(new FighterView(this.you).getElement());
         fighters.append(this.arrows);
         fighters.append(this.shields);
-        fighters.append(new FighterView(this.enemy).element);
+        fighters.append(new FighterView(this.enemy).getElement());
         this.root.append(fighters);
 
 
@@ -96,8 +109,8 @@ class Battle {
             this.hit(3);
         });
     }
-    log(...text) {
 
+    private _log(...text : Array<string>) {
         text.forEach(elem => {
             this.text.value += `${elem} \n`;
         });
@@ -105,35 +118,25 @@ class Battle {
     }
 
     hit(where) {
-        let arr = ['head', 'armor', 'legs'];
-        let attack;
+        let arr = [EWhere.Up, EWhere.Middle, EWhere.Down];
+        let attack: {attack, defense, where} = this.count % 2 == 0 ? this.generatorAttack.next().value : this.generatorDefense.next().value;
+        let damage:number = <number>attack.attack.toFixed(1);
 
-        if (this.count % 2 == 0)
-            attack = this.generatorAttack.next().value;
-        else
-            attack = this.generatorDefense.next().value;
-
-        let damage = attack.attack.toFixed(1);
 
         if (where == attack.where) {
             damage = attack.attack.toFixed(1) - attack.defense.toFixed(1);
         }
 
-        let res;
-
-        if (this.count % 2 == 0)
-            res = this.secondIndicator.hit((+damage).toFixed(1));
-        else
-            res = this.firstIndicator.hit((+damage).toFixed(1));
+        let res = this.count % 2 == 0 ? this.secondIndicator.hit((+damage).toFixed(1)) : this.firstIndicator.hit((+damage).toFixed(1));
 
 
         if (!res.end) {
             if (this.count % 2 == 0) {
-                this.log(`-- You attack ${arr[where-1]} with damage ${attack.attack.toFixed(1)}. Enemy defense ${arr[attack.where-1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
+                this._log(`-- You attack ${arr[where-1]} with damage ${attack.attack.toFixed(1)}. Enemy defense ${arr[attack.where-1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
                 this.arrows.style.display = 'none';
                 this.shields.style.display = 'flex';
             } else {
-                this.log(`-- Enemy attack ${arr[attack.where-1]} with damage ${attack.attack.toFixed(1)}. Your defense ${arr[where-1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
+                this._log(`-- Enemy attack ${arr[attack.where-1]} with damage ${attack.attack.toFixed(1)}. Your defense ${arr[where-1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
                 this.shields.style.display = 'none';
                 this.arrows.style.display = 'flex';
             }
@@ -152,15 +155,13 @@ class Battle {
         this.count++;
     }
 
-    * generator(fighter1, fighter2) {
+    static* generator(fighter1: Fighter, fighter2: Fighter) {
+        console.log(fighter1);
         while (true)
             yield {
                 attack: fighter1.getHitPower(),
                 defense: fighter2.getBlockPower(),
-                where: MyRandom.randomIntNumber({
-                    min: 1,
-                    max: 3
-                })
+                where: MyRandom.randomIntNumber(1,3)
             }
     }
 }

@@ -3,22 +3,25 @@ import FighterView from './fighterView';
 import {fightersService} from './services/fightersService';
 import Fighter_modal from './helpers/modal/Fighter_modal';
 import Preparation from './battle/Preparation';
+import {Fighter} from "./Fighter";
 
-class FightersView extends View {
+export class FightersView extends View {
+  handleClick;
+  preparation;
 
   constructor(fighters) {
     super();
-    this.handleClick = this.handleFighterClick.bind(this);
+    this.handleClick = this._handleFighterClick.bind(this);
     this.createFighters(fighters);
     this.preparation = new Preparation();
   }
 
-  fightersDetailsMap = new Map();
+  fightersDetailsMap: Map<number, Fighter> = new Map();
 
   createFighters(fighters) {
     const fighterElements = fighters.map(fighter => {
       const fighterView = new FighterView(fighter, this.handleClick);
-      return fighterView.element;
+      return fighterView.getElement();
     });
 
     this.element = this.createElement({
@@ -28,8 +31,8 @@ class FightersView extends View {
     this.element.append(...fighterElements);
   }
 
-  handleFighterClick(event, fighter) {
-    let modal;
+  private _handleFighterClick(fighter) {
+    let modal: Fighter_modal;
 
     if (this.fightersDetailsMap.has(fighter._id))
       modal = new Fighter_modal(this.fightersDetailsMap.get(fighter._id), this.preparation);
@@ -45,5 +48,3 @@ class FightersView extends View {
 
   }
 }
-
-export default FightersView;

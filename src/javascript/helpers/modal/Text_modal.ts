@@ -1,7 +1,7 @@
 import Modal from './Modal';
 
-class Text_modal extends Modal {
-    constructor(header, text, callback) {
+export class Text_modal extends Modal {
+    constructor(header, text, callback?) {
         super();
         let h = this.createElement({
             tagName: 'h2',
@@ -24,7 +24,7 @@ class Text_modal extends Modal {
 
         let btn = this.createElement({
             tagName: 'button',
-            classname: 'text_modal_button'
+            className: 'text_modal_button'
         });
         divForBtn.append(btn);
         btn.innerHTML = 'OK';
@@ -36,10 +36,9 @@ class Text_modal extends Modal {
         if (callback)
             this.close.addEventListener('click', callback);
     }
-    static showInformation(header, text, callback) {
+    static showInformation(header, text, callback?) {
         document.body.append(new Text_modal(header, text, callback).modal);
     }
 
 
 }
-export default Text_modal;

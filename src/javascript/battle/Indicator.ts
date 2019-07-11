@@ -1,4 +1,9 @@
 class Indicator {
+    fighter;
+    _health;
+    elem;
+    indicator;
+    span;
 
     constructor(fighter) {
         this.fighter = fighter;

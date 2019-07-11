@@ -81,32 +81,27 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./index.js":
+/***/ "./index.ts":
 /*!******************!*\
-  !*** ./index.js ***!
+  !*** ./index.ts ***!
   \******************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_javascript_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/javascript/app */ "./src/javascript/app.js");
-/* harmony import */ var _src_styles_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/styles/styles.css */ "./src/styles/styles.css");
-/* harmony import */ var _src_styles_styles_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_src_styles_styles_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _src_styles_main_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/styles/main.css */ "./src/styles/main.css");
-/* harmony import */ var _src_styles_main_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_src_styles_main_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _src_styles_animation_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/styles/animation.css */ "./src/styles/animation.css");
-/* harmony import */ var _src_styles_animation_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_src_styles_animation_css__WEBPACK_IMPORTED_MODULE_3__);
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_1 = __webpack_require__(/*! ./src/javascript/app */ "./src/javascript/app.ts");
+__webpack_require__(/*! ./src/styles/styles.css */ "./src/styles/styles.css");
+__webpack_require__(/*! ./src/styles/main.css */ "./src/styles/main.css");
+__webpack_require__(/*! ./src/styles/animation.css */ "./src/styles/animation.css");
+new app_1.default();
 
-
-
-new _src_javascript_app__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 /***/ }),
 
@@ -760,863 +755,1039 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ "./src/javascript/Fighter.js":
+/***/ "./src/javascript/Fighter.ts":
 /*!***********************************!*\
-  !*** ./src/javascript/Fighter.js ***!
+  !*** ./src/javascript/Fighter.ts ***!
   \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services_MyRandom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/MyRandom */ "./src/javascript/services/MyRandom.js");
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var MyRandom_1 = __webpack_require__(/*! ./services/MyRandom */ "./src/javascript/services/MyRandom.ts");
+var Fighter = /** @class */ (function () {
+    function Fighter(_a) {
+        var _id = _a._id, name = _a.name, source = _a.source;
+        this._id = _id;
+        this.name = name;
+        this.source = source;
+        this.getHitPower = this._getHitPower;
+        this.getBlockPower = this._getBlockPower;
+    }
+    Fighter.prototype.addDetails = function (_a) {
+        var attack = _a.attack, defense = _a.defense, health = _a.health;
+        this.attack = attack;
+        this.defense = defense;
+        this.health = health;
+    };
+    Fighter.prototype._getHitPower = function () {
+        return this.attack * MyRandom_1.default.randomFloatNumber({
+            min: 1,
+            max: 2
+        });
+    };
+    Fighter.prototype._getBlockPower = function () {
+        return this.defense * MyRandom_1.default.randomFloatNumber({
+            min: 1,
+            max: 2
+        });
+    };
+    return Fighter;
+}());
+exports.Fighter = Fighter;
 
-class Fighter {
-  constructor({
-    _id,
-    name,
-    source
-  }) {
-    this._id = _id;
-    this.name = name;
-    this.source = source;
-    this.getHitPower = this._getHitPower;
-    this.getBlockPower = this._getBlockPower;
-  }
-
-  addDetails({
-    attack,
-    defense,
-    health
-  }) {
-    this.attack = attack;
-    this.defense = defense;
-    this.health = health;
-  }
-
-  _getHitPower() {
-    return this.attack * _services_MyRandom__WEBPACK_IMPORTED_MODULE_0__["default"].randomFloatNumber({
-      min: 1,
-      max: 2
-    });
-  }
-
-  _getBlockPower() {
-    return this.defense * _services_MyRandom__WEBPACK_IMPORTED_MODULE_0__["default"].randomFloatNumber({
-      min: 1,
-      max: 2
-    });
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Fighter);
 
 /***/ }),
 
-/***/ "./src/javascript/app.js":
+/***/ "./src/javascript/app.ts":
 /*!*******************************!*\
-  !*** ./src/javascript/app.js ***!
+  !*** ./src/javascript/app.ts ***!
   \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fightersView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fightersView */ "./src/javascript/fightersView.js");
-/* harmony import */ var _services_fightersService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/fightersService */ "./src/javascript/services/fightersService.js");
-/* harmony import */ var _Fighter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Fighter */ "./src/javascript/Fighter.js");
-/* harmony import */ var _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/modal/Text_modal */ "./src/javascript/helpers/modal/Text_modal.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-
-
-
-
-class App {
-  constructor() {
-    _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_3__["default"].showInformation('Greetings! Welcome to our game', `First of all, you need to choose two characters - your fighter and your enemy - by clicking on their avatar, and decide on the level of health, the power of attack and defense. After that you are ready to start the fight (you will see the button 'Begin fight' at the very top of the window).`);
-    this.startApp();
-  }
-
-  async startApp() {
-    try {
-      App.loadingElement.style.visibility = 'visible';
-      let fighters = await _services_fightersService__WEBPACK_IMPORTED_MODULE_1__["fightersService"].getFighters();
-      fighters = [...fighters].map(elem => new _Fighter__WEBPACK_IMPORTED_MODULE_2__["default"](elem));
-      const fightersView = new _fightersView__WEBPACK_IMPORTED_MODULE_0__["default"](fighters);
-      const fightersElement = fightersView.element;
-      App.rootElement.appendChild(fightersElement);
-      App.information.innerHTML = `
-                <div id='firstChoose'>Your</div>
-                <div id='choosed'>Сhoose a character</div>
-                <div id='secondChoose'>Enemy</div>`;
-    } catch (error) {
-      console.warn(error);
-      App.rootElement.innerText = 'Failed to load data';
-    } finally {
-      App.loadingElement.style.visibility = 'hidden';
-      App.information.style.visibility = 'visible';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-  }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var fightersView_1 = __webpack_require__(/*! ./fightersView */ "./src/javascript/fightersView.ts");
+var fightersService_1 = __webpack_require__(/*! ./services/fightersService */ "./src/javascript/services/fightersService.ts");
+var Fighter_1 = __webpack_require__(/*! ./Fighter */ "./src/javascript/Fighter.ts");
+var Text_modal_1 = __webpack_require__(/*! ./helpers/modal/Text_modal */ "./src/javascript/helpers/modal/Text_modal.ts");
+var App = /** @class */ (function () {
+    function App() {
+        Text_modal_1.Text_modal.showInformation('Greetings! Welcome to our game', "First of all, you need to choose two characters - your fighter and your enemy - by clicking on their avatar, and decide on the level of health, the power of attack and defense. After that you are ready to start the fight (you will see the button 'Begin fight' at the very top of the window).");
+        this.startApp();
+    }
+    App.prototype.startApp = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var fighters, fightersView, fightersElement, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, 3, 4]);
+                        App.loadingElement.style.visibility = 'visible';
+                        return [4 /*yield*/, fightersService_1.fightersService.getFighters()];
+                    case 1:
+                        fighters = _a.sent();
+                        fighters = fighters.slice().map(function (elem) { return new Fighter_1.Fighter(elem); });
+                        fightersView = new fightersView_1.FightersView(fighters);
+                        fightersElement = fightersView.element;
+                        App.rootElement.appendChild(fightersElement);
+                        App.information.innerHTML = "\n                <div id='firstChoose'>Your</div>\n                <div id='choosed'>\u0421hoose a character</div>\n                <div id='secondChoose'>Enemy</div>";
+                        return [3 /*break*/, 4];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.warn(error_1);
+                        App.rootElement.innerText = 'Failed to load data';
+                        return [3 /*break*/, 4];
+                    case 3:
+                        App.loadingElement.style.visibility = 'hidden';
+                        App.information.style.visibility = 'visible';
+                        return [7 /*endfinally*/];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    App.rootElement = document.getElementById('root');
+    App.loadingElement = document.getElementById('loading-overlay');
+    App.information = document.getElementById('informationBlock');
+    return App;
+}());
+exports.default = App;
 
-}
-
-_defineProperty(App, "rootElement", document.getElementById('root'));
-
-_defineProperty(App, "loadingElement", document.getElementById('loading-overlay'));
-
-_defineProperty(App, "information", document.getElementById('informationBlock'));
-
-/* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
 
-/***/ "./src/javascript/battle/Battle.js":
+/***/ "./src/javascript/battle/Battle.ts":
 /*!*****************************************!*\
-  !*** ./src/javascript/battle/Battle.js ***!
+  !*** ./src/javascript/battle/Battle.ts ***!
   \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fighterView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fighterView */ "./src/javascript/fighterView.js");
-/* harmony import */ var _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/modal/Text_modal */ "./src/javascript/helpers/modal/Text_modal.js");
-/* harmony import */ var _Indicator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Indicator */ "./src/javascript/battle/Indicator.js");
-/* harmony import */ var _services_MyRandom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/MyRandom */ "./src/javascript/services/MyRandom.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-
-
-
-
-class Battle {
-  constructor(you, enemy) {
-    _defineProperty(this, "count", 0);
-
-    this.rootElem = document.getElementById('root');
-    this.rootElem.style.display = 'none';
-    this.enemy = enemy;
-    this.you = you;
-    this.init();
-    _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_1__["default"].showInformation(`There is information about fight`, `You need to choose which enemy's part of the body to attack, after that your enemy is to decide which part to protect. And then vice versa - he attacks, you defend. Performance of both fighters is displayed in the console at the bottom of the window.`);
-    this.log('The fight start!');
-  }
-
-  init() {
-    this.generatorAttack = this.generator(this.you, this.enemy);
-    this.generatorDefense = this.generator(this.enemy, this.you);
-    this.arrows = document.createElement('div');
-    this.arrows.setAttribute('id', 'chooseAttack');
-    this.arrows.innerHTML = `<span id='up'></span>
-        <span id='middle'></span>
-        <span id='down'></span>`;
-    this.shields = document.createElement('div');
-    this.shields.setAttribute('id', 'chooseDefense');
-    this.shields.innerHTML = `<span id='upDef'></span>
-        <span id='middleDef'></span>
-        <span id='downDef'></span>`;
-    this.root = document.createElement('div');
-    this.root.setAttribute('id', 'rootElem');
-    let header = document.createElement('div');
-    header.setAttribute('class', 'header');
-    this.firstIndicator = new _Indicator__WEBPACK_IMPORTED_MODULE_2__["default"](this.you);
-    header.append(this.firstIndicator.elem);
-    let span = document.createElement('span');
-    span.setAttribute('class', 'headerSpan');
-    span.innerHTML = 'VS';
-    header.append(span);
-    this.secondIndicator = new _Indicator__WEBPACK_IMPORTED_MODULE_2__["default"](this.enemy);
-    header.append(this.secondIndicator.elem);
-    this.root.append(header);
-    this.arrows.style.display = 'flex';
-    let fighters = document.createElement('div');
-    fighters.setAttribute('class', 'fighters');
-    fighters.append(new _fighterView__WEBPACK_IMPORTED_MODULE_0__["default"](this.you).element);
-    fighters.append(this.arrows);
-    fighters.append(this.shields);
-    fighters.append(new _fighterView__WEBPACK_IMPORTED_MODULE_0__["default"](this.enemy).element);
-    this.root.append(fighters);
-    this.text = document.createElement('textarea');
-    this.text.setAttribute('id', 'textarea');
-    this.text.setAttribute('disabled', 'disabled');
-    this.root.append(this.text);
-    document.body.append(this.root);
-    document.getElementById('up').addEventListener('click', () => {
-      this.hit(1);
-    });
-    document.getElementById('middle').addEventListener('click', () => {
-      this.hit(2);
-    });
-    document.getElementById('down').addEventListener('click', () => {
-      this.hit(3);
-    });
-    document.getElementById('upDef').addEventListener('click', () => {
-      this.hit(1);
-    });
-    document.getElementById('middleDef').addEventListener('click', () => {
-      this.hit(2);
-    });
-    document.getElementById('downDef').addEventListener('click', () => {
-      this.hit(3);
-    });
-  }
-
-  log(...text) {
-    text.forEach(elem => {
-      this.text.value += `${elem} \n`;
-    });
-    this.text.scrollTop = this.text.scrollHeight;
-  }
-
-  hit(where) {
-    let arr = ['head', 'armor', 'legs'];
-    let attack;
-    if (this.count % 2 == 0) attack = this.generatorAttack.next().value;else attack = this.generatorDefense.next().value;
-    let damage = attack.attack.toFixed(1);
-
-    if (where == attack.where) {
-      damage = attack.attack.toFixed(1) - attack.defense.toFixed(1);
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-
-    let res;
-    if (this.count % 2 == 0) res = this.secondIndicator.hit((+damage).toFixed(1));else res = this.firstIndicator.hit((+damage).toFixed(1));
-
-    if (!res.end) {
-      if (this.count % 2 == 0) {
-        this.log(`-- You attack ${arr[where - 1]} with damage ${attack.attack.toFixed(1)}. Enemy defense ${arr[attack.where - 1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
-        this.arrows.style.display = 'none';
-        this.shields.style.display = 'flex';
-      } else {
-        this.log(`-- Enemy attack ${arr[attack.where - 1]} with damage ${attack.attack.toFixed(1)}. Your defense ${arr[where - 1]} with power ${attack.defense.toFixed(1)}. Total damage ${res.damage}`);
-        this.shields.style.display = 'none';
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var fighterView_1 = __webpack_require__(/*! ../fighterView */ "./src/javascript/fighterView.ts");
+var Text_modal_1 = __webpack_require__(/*! ../helpers/modal/Text_modal */ "./src/javascript/helpers/modal/Text_modal.ts");
+var Indicator_1 = __webpack_require__(/*! ./Indicator */ "./src/javascript/battle/Indicator.ts");
+var MyRandom_1 = __webpack_require__(/*! ../services/MyRandom */ "./src/javascript/services/MyRandom.ts");
+var Battle = /** @class */ (function () {
+    function Battle(you, enemy) {
+        this.count = 0;
+        this.rootElem = document.getElementById('root');
+        this.rootElem.style.display = 'none';
+        this.enemy = enemy;
+        this.you = you;
+        this.init();
+        Text_modal_1.Text_modal.showInformation("There is information about fight", "You need to choose which enemy's part of the body to attack, after that your enemy is to decide which part to protect. And then vice versa - he attacks, you defend. Performance of both fighters is displayed in the console at the bottom of the window.");
+        this.log('The fight start!');
+    }
+    Battle.prototype.init = function () {
+        var _this = this;
+        this.generatorAttack = Battle.generator(this.you, this.enemy);
+        this.generatorDefense = Battle.generator(this.enemy, this.you);
+        this.arrows = document.createElement('div');
+        this.arrows.setAttribute('id', 'chooseAttack');
+        this.arrows.innerHTML = "<span id='up'></span>\n        <span id='middle'></span>\n        <span id='down'></span>";
+        this.shields = document.createElement('div');
+        this.shields.setAttribute('id', 'chooseDefense');
+        this.shields.innerHTML = "<span id='upDef'></span>\n        <span id='middleDef'></span>\n        <span id='downDef'></span>";
+        this.root = document.createElement('div');
+        this.root.setAttribute('id', 'rootElem');
+        var header = document.createElement('div');
+        header.setAttribute('class', 'header');
+        this.firstIndicator = new Indicator_1.default(this.you);
+        header.append(this.firstIndicator.elem);
+        var span = document.createElement('span');
+        span.setAttribute('class', 'headerSpan');
+        span.innerHTML = 'VS';
+        header.append(span);
+        this.secondIndicator = new Indicator_1.default(this.enemy);
+        header.append(this.secondIndicator.elem);
+        this.root.append(header);
         this.arrows.style.display = 'flex';
-      }
-    } else {
-      let callback = () => {
-        document.getElementById('rootElem').remove();
-        document.getElementById('root').style.display = 'flex';
-      };
-
-      if (this.count % 2 == 0) {
-        _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_1__["default"].showInformation('Yeah', `Сongratulations on the victory, keep up the good work`, callback);
-      } else _helpers_modal_Text_modal__WEBPACK_IMPORTED_MODULE_1__["default"].showInformation('Oops', `You lost, but do not worry. Next time everything will turn out`, callback);
-    }
-
-    this.count++;
-  }
-
-  *generator(fighter1, fighter2) {
-    while (true) yield {
-      attack: fighter1.getHitPower(),
-      defense: fighter2.getBlockPower(),
-      where: _services_MyRandom__WEBPACK_IMPORTED_MODULE_3__["default"].randomIntNumber({
-        min: 1,
-        max: 3
-      })
+        var fighters = document.createElement('div');
+        fighters.setAttribute('class', 'fighters');
+        fighters.append(new fighterView_1.default(this.you).getElement());
+        fighters.append(this.arrows);
+        fighters.append(this.shields);
+        fighters.append(new fighterView_1.default(this.enemy).getElement());
+        this.root.append(fighters);
+        this.text = document.createElement('textarea');
+        this.text.setAttribute('id', 'textarea');
+        this.text.setAttribute('disabled', 'disabled');
+        this.root.append(this.text);
+        document.body.append(this.root);
+        document.getElementById('up').addEventListener('click', function () {
+            _this.hit(1);
+        });
+        document.getElementById('middle').addEventListener('click', function () {
+            _this.hit(2);
+        });
+        document.getElementById('down').addEventListener('click', function () {
+            _this.hit(3);
+        });
+        document.getElementById('upDef').addEventListener('click', function () {
+            _this.hit(1);
+        });
+        document.getElementById('middleDef').addEventListener('click', function () {
+            _this.hit(2);
+        });
+        document.getElementById('downDef').addEventListener('click', function () {
+            _this.hit(3);
+        });
     };
-  }
+    Battle.prototype.log = function () {
+        var _this = this;
+        var text = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            text[_i] = arguments[_i];
+        }
+        text.forEach(function (elem) {
+            _this.text.value += elem + " \n";
+        });
+        this.text.scrollTop = this.text.scrollHeight;
+    };
+    Battle.prototype.hit = function (where) {
+        var arr = ['head', 'armor', 'legs'];
+        var attack;
+        if (this.count % 2 == 0)
+            attack = this.generatorAttack.next().value;
+        else
+            attack = this.generatorDefense.next().value;
+        var damage = attack.attack.toFixed(1);
+        if (where == attack.where) {
+            damage = attack.attack.toFixed(1) - attack.defense.toFixed(1);
+        }
+        var res;
+        if (this.count % 2 == 0)
+            res = this.secondIndicator.hit((+damage).toFixed(1));
+        else
+            res = this.firstIndicator.hit((+damage).toFixed(1));
+        if (!res.end) {
+            if (this.count % 2 == 0) {
+                this.log("-- You attack " + arr[where - 1] + " with damage " + attack.attack.toFixed(1) + ". Enemy defense " + arr[attack.where - 1] + " with power " + attack.defense.toFixed(1) + ". Total damage " + res.damage);
+                this.arrows.style.display = 'none';
+                this.shields.style.display = 'flex';
+            }
+            else {
+                this.log("-- Enemy attack " + arr[attack.where - 1] + " with damage " + attack.attack.toFixed(1) + ". Your defense " + arr[where - 1] + " with power " + attack.defense.toFixed(1) + ". Total damage " + res.damage);
+                this.shields.style.display = 'none';
+                this.arrows.style.display = 'flex';
+            }
+        }
+        else {
+            var callback = function () {
+                document.getElementById('rootElem').remove();
+                document.getElementById('root').style.display = 'flex';
+            };
+            if (this.count % 2 == 0) {
+                Text_modal_1.Text_modal.showInformation('Yeah', "\u0421ongratulations on the victory, keep up the good work", callback);
+            }
+            else
+                Text_modal_1.Text_modal.showInformation('Oops', "You lost, but do not worry. Next time everything will turn out", callback);
+        }
+        this.count++;
+    };
+    Battle.generator = function (fighter1, fighter2) {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (false) {}
+                    return [4 /*yield*/, {
+                            attack: fighter1.getHitPower(),
+                            defense: fighter2.getBlockPower(),
+                            where: MyRandom_1.default.randomIntNumber({
+                                min: 1,
+                                max: 3
+                            })
+                        }];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 0];
+                case 2: return [2 /*return*/];
+            }
+        });
+    };
+    return Battle;
+}());
+exports.default = Battle;
 
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Battle);
 
 /***/ }),
 
-/***/ "./src/javascript/battle/Indicator.js":
+/***/ "./src/javascript/battle/Indicator.ts":
 /*!********************************************!*\
-  !*** ./src/javascript/battle/Indicator.js ***!
+  !*** ./src/javascript/battle/Indicator.ts ***!
   \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-class Indicator {
-  constructor(fighter) {
-    this.fighter = fighter;
-    this._health = fighter.health;
-    this.elem = document.createElement('div');
-    this.elem.setAttribute('class', 'progress');
-    this.indicator = document.createElement('div');
-    this.indicator.setAttribute('class', 'indicatorHealth');
-    this.span = document.createElement('span');
-    this.span.innerHTML = this.fighter.health;
-    this.elem.append(this.span, this.indicator);
-  }
 
-  hit(point) {
-    point = +point;
-    if (point < 0) return {
-      end: false,
-      damage: 0
-    };
-    this._health = this._health.toFixed(1) - point;
-
-    if (this._health <= 0) {
-      this.span.innerHTML = '0';
-      this.indicator.style.width = '0%';
-      return {
-        end: true,
-        damage: point.toFixed(1)
-      };
-    } else {
-      this.span.innerHTML = this._health.toFixed(1);
-      let width = (100 * this._health.toFixed(1) / this.fighter.health).toFixed(1);
-      this.indicator.style.width = `${width}%`;
-      return {
-        end: false,
-        damage: point.toFixed(1)
-      };
+Object.defineProperty(exports, "__esModule", { value: true });
+var Indicator = /** @class */ (function () {
+    function Indicator(fighter) {
+        this.fighter = fighter;
+        this._health = fighter.health;
+        this.elem = document.createElement('div');
+        this.elem.setAttribute('class', 'progress');
+        this.indicator = document.createElement('div');
+        this.indicator.setAttribute('class', 'indicatorHealth');
+        this.span = document.createElement('span');
+        this.span.innerHTML = this.fighter.health;
+        this.elem.append(this.span, this.indicator);
     }
-  }
+    Indicator.prototype.hit = function (point) {
+        point = +point;
+        if (point < 0)
+            return {
+                end: false,
+                damage: 0
+            };
+        this._health = (this._health.toFixed(1) - point);
+        if (this._health <= 0) {
+            this.span.innerHTML = '0';
+            this.indicator.style.width = '0%';
+            return {
+                end: true,
+                damage: point.toFixed(1)
+            };
+        }
+        else {
+            this.span.innerHTML = this._health.toFixed(1);
+            var width = (100 * (this._health).toFixed(1) / this.fighter.health).toFixed(1);
+            this.indicator.style.width = width + "%";
+            return {
+                end: false,
+                damage: point.toFixed(1)
+            };
+        }
+    };
+    return Indicator;
+}());
+exports.default = Indicator;
 
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Indicator);
 
 /***/ }),
 
-/***/ "./src/javascript/battle/Preparation.js":
+/***/ "./src/javascript/battle/Preparation.ts":
 /*!**********************************************!*\
-  !*** ./src/javascript/battle/Preparation.js ***!
+  !*** ./src/javascript/battle/Preparation.ts ***!
   \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Battle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Battle */ "./src/javascript/battle/Battle.js");
 
-
-class Preparation {
-  get your() {
-    return this._your;
-  }
-
-  set your(fighter) {
-    document.getElementById('firstChoose').innerHTML = `Your: ${fighter.name}`;
-    this._your = fighter;
-
-    if (this._your && this._enemy && !this.btn) {
-      this.printBTN();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Battle_1 = __webpack_require__(/*! ./Battle */ "./src/javascript/battle/Battle.ts");
+var Preparation = /** @class */ (function () {
+    function Preparation() {
     }
-  }
-
-  get enemy() {
-    return this._enemy;
-  }
-
-  set enemy(fighter) {
-    document.getElementById('secondChoose').innerHTML = `Enemy: ${fighter.name}`;
-    this._enemy = fighter;
-
-    if (this._your && this._enemy && !this.btn) {
-      this.printBTN();
-    }
-  }
-
-  printBTN() {
-    let elem = document.getElementById('choosed');
-    elem.innerHTML = '';
-    this.btn = document.createElement('button');
-    this.btn.innerHTML = 'Begin battle';
-    this.btn.addEventListener('click', () => {
-      new _Battle__WEBPACK_IMPORTED_MODULE_0__["default"](this._your, this._enemy);
+    Object.defineProperty(Preparation.prototype, "your", {
+        get: function () {
+            return this._your;
+        },
+        set: function (fighter) {
+            document.getElementById('firstChoose').innerHTML = "Your: " + fighter.name;
+            this._your = fighter;
+            if (this._your && this._enemy && !this.btn) {
+                this.printBTN();
+            }
+        },
+        enumerable: true,
+        configurable: true
     });
-    elem.append(this.btn);
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Preparation);
-
-/***/ }),
-
-/***/ "./src/javascript/fighterView.js":
-/*!***************************************!*\
-  !*** ./src/javascript/fighterView.js ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view */ "./src/javascript/view.js");
-
-
-class FighterView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(fighter, handleClick) {
-    super();
-    this.createFighter(fighter, handleClick);
-  }
-
-  createFighter(fighter, handleClick) {
-    const {
-      name,
-      source
-    } = fighter;
-    const nameElement = this.createName(name);
-    const imageElement = this.createImage(source);
-    this.element = this.createElement({
-      tagName: 'div',
-      className: 'fighter'
+    ;
+    ;
+    Object.defineProperty(Preparation.prototype, "enemy", {
+        get: function () {
+            return this._enemy;
+        },
+        set: function (fighter) {
+            document.getElementById('secondChoose').innerHTML = "Enemy: " + fighter.name;
+            this._enemy = fighter;
+            if (this._your && this._enemy && !this.btn) {
+                this.printBTN();
+            }
+        },
+        enumerable: true,
+        configurable: true
     });
-    this.element.append(imageElement, nameElement);
-    if (handleClick) ;
-    this.element.addEventListener('click', event => handleClick(event, fighter), false);
-  }
-
-  createName(name) {
-    const nameElement = this.createElement({
-      tagName: 'span',
-      className: 'name'
-    });
-    nameElement.innerText = name;
-    return nameElement;
-  }
-
-  createImage(source) {
-    const attributes = {
-      src: source
+    ;
+    ;
+    Preparation.prototype.printBTN = function () {
+        var _this = this;
+        var elem = document.getElementById('choosed');
+        elem.innerHTML = '';
+        this.btn = document.createElement('button');
+        this.btn.innerHTML = 'Begin battle';
+        this.btn.addEventListener('click', function () {
+            new Battle_1.default(_this._your, _this._enemy);
+        });
+        elem.append(this.btn);
     };
-    const imgElement = this.createElement({
-      tagName: 'img',
-      className: 'fighter-image',
-      attributes
-    });
-    return imgElement;
-  }
+    return Preparation;
+}());
+exports.default = Preparation;
 
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (FighterView);
 
 /***/ }),
 
-/***/ "./src/javascript/fightersView.js":
+/***/ "./src/javascript/fighterView.ts":
+/*!***************************************!*\
+  !*** ./src/javascript/fighterView.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var view_1 = __webpack_require__(/*! ./view */ "./src/javascript/view.ts");
+var FighterView = /** @class */ (function (_super) {
+    __extends(FighterView, _super);
+    function FighterView(fighter, handleClick) {
+        var _this = _super.call(this) || this;
+        _this.createFighter(fighter, handleClick);
+        return _this;
+    }
+    FighterView.prototype.getElement = function () {
+        return _super.prototype.getElement.call(this);
+    };
+    FighterView.prototype.createFighter = function (fighter, handleClick) {
+        var name = fighter.name, source = fighter.source;
+        var nameElement = this.createName(name);
+        var imageElement = this.createImage(source);
+        _super.prototype.setElement.call(this, _super.prototype.createElement.call(this, { tagName: 'div', className: 'fighter' }));
+        _super.prototype.getElement.call(this).append(imageElement, nameElement);
+        if (handleClick)
+            _super.prototype.getElement.call(this).addEventListener('click', function (event) { return handleClick(event, fighter); }, false);
+    };
+    FighterView.prototype.createName = function (name) {
+        var nameElement = _super.prototype.createElement.call(this, { tagName: 'span', className: 'name' });
+        nameElement.innerText = name;
+        return nameElement;
+    };
+    FighterView.prototype.createImage = function (source) {
+        var attributes = { src: source };
+        return _super.prototype.createElement.call(this, {
+            tagName: 'img',
+            className: 'fighter-image',
+            attributes: attributes
+        });
+    };
+    return FighterView;
+}(view_1.default));
+exports.default = FighterView;
+
+
+/***/ }),
+
+/***/ "./src/javascript/fightersView.ts":
 /*!****************************************!*\
-  !*** ./src/javascript/fightersView.js ***!
+  !*** ./src/javascript/fightersView.ts ***!
   \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view */ "./src/javascript/view.js");
-/* harmony import */ var _fighterView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fighterView */ "./src/javascript/fighterView.js");
-/* harmony import */ var _services_fightersService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/fightersService */ "./src/javascript/services/fightersService.js");
-/* harmony import */ var _helpers_modal_Fighter_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/modal/Fighter_modal */ "./src/javascript/helpers/modal/Fighter_modal.js");
-/* harmony import */ var _battle_Preparation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./battle/Preparation */ "./src/javascript/battle/Preparation.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var view_1 = __webpack_require__(/*! ./view */ "./src/javascript/view.ts");
+var fighterView_1 = __webpack_require__(/*! ./fighterView */ "./src/javascript/fighterView.ts");
+var fightersService_1 = __webpack_require__(/*! ./services/fightersService */ "./src/javascript/services/fightersService.ts");
+var Fighter_modal_1 = __webpack_require__(/*! ./helpers/modal/Fighter_modal */ "./src/javascript/helpers/modal/Fighter_modal.ts");
+var Preparation_1 = __webpack_require__(/*! ./battle/Preparation */ "./src/javascript/battle/Preparation.ts");
+var FightersView = /** @class */ (function (_super) {
+    __extends(FightersView, _super);
+    function FightersView(fighters) {
+        var _this = _super.call(this) || this;
+        _this.fightersDetailsMap = new Map();
+        _this.handleClick = _this.handleFighterClick.bind(_this);
+        _this.createFighters(fighters);
+        _this.preparation = new Preparation_1.default();
+        return _this;
+    }
+    FightersView.prototype.createFighters = function (fighters) {
+        var _a;
+        var _this = this;
+        var fighterElements = fighters.map(function (fighter) {
+            var fighterView = new fighterView_1.default(fighter, _this.handleClick);
+            return fighterView.getElement();
+        });
+        this.element = this.createElement({
+            tagName: 'div',
+            className: 'fighters'
+        });
+        (_a = this.element).append.apply(_a, fighterElements);
+    };
+    FightersView.prototype.handleFighterClick = function (event, fighter) {
+        var _this = this;
+        var modal;
+        if (this.fightersDetailsMap.has(fighter._id))
+            modal = new Fighter_modal_1.default(this.fightersDetailsMap.get(fighter._id), this.preparation);
+        else
+            fightersService_1.fightersService.getFighterDetails(fighter._id)
+                .then(function (data) {
+                fighter.addDetails(data);
+                _this.fightersDetailsMap.set(fighter._id, fighter);
+                modal = new Fighter_modal_1.default(fighter, _this.preparation);
+            }).catch(function (err) {
+                console.log(err);
+            });
+    };
+    return FightersView;
+}(view_1.default));
+exports.FightersView = FightersView;
 
-
-
-
-
-
-class FightersView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(fighters) {
-    super();
-
-    _defineProperty(this, "fightersDetailsMap", new Map());
-
-    this.handleClick = this.handleFighterClick.bind(this);
-    this.createFighters(fighters);
-    this.preparation = new _battle_Preparation__WEBPACK_IMPORTED_MODULE_4__["default"]();
-  }
-
-  createFighters(fighters) {
-    const fighterElements = fighters.map(fighter => {
-      const fighterView = new _fighterView__WEBPACK_IMPORTED_MODULE_1__["default"](fighter, this.handleClick);
-      return fighterView.element;
-    });
-    this.element = this.createElement({
-      tagName: 'div',
-      className: 'fighters'
-    });
-    this.element.append(...fighterElements);
-  }
-
-  handleFighterClick(event, fighter) {
-    let modal;
-    if (this.fightersDetailsMap.has(fighter._id)) modal = new _helpers_modal_Fighter_modal__WEBPACK_IMPORTED_MODULE_3__["default"](this.fightersDetailsMap.get(fighter._id), this.preparation);else _services_fightersService__WEBPACK_IMPORTED_MODULE_2__["fightersService"].getFighterDetails(fighter._id).then(data => {
-      fighter.addDetails(data);
-      this.fightersDetailsMap.set(fighter._id, fighter);
-      modal = new _helpers_modal_Fighter_modal__WEBPACK_IMPORTED_MODULE_3__["default"](fighter, this.preparation);
-    }).catch(err => {
-      console.log(err);
-    });
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (FightersView);
 
 /***/ }),
 
-/***/ "./src/javascript/helpers/apiHelper.js":
+/***/ "./src/javascript/helpers/apiHelper.ts":
 /*!*********************************************!*\
-  !*** ./src/javascript/helpers/apiHelper.js ***!
+  !*** ./src/javascript/helpers/apiHelper.ts ***!
   \*********************************************/
-/*! exports provided: callApi */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "callApi", function() { return callApi; });
-const API_URL = 'https://api.github.com/repos/binary-studio-academy/stage-2-es6-for-everyone/contents/resources/api/';
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var API_URL = 'https://api.github.com/repos/binary-studio-academy/stage-2-es6-for-everyone/contents/resources/api/';
 function callApi(endpoind, method) {
-  const url = API_URL + endpoind;
-  const options = {
-    method
-  };
-  return fetch(url, options).then(response => response.ok ? response.json() : Promise.reject(Error('Failed to load'))).catch(error => {
-    throw error;
-  });
+    var url = API_URL + endpoind;
+    var options = {
+        method: method
+    };
+    return fetch(url, options)
+        .then(function (response) {
+        return response.ok ? response.json() : Promise.reject(Error('Failed to load'));
+    })
+        .catch(function (error) {
+        throw error;
+    });
 }
-
+exports.callApi = callApi;
 
 
 /***/ }),
 
-/***/ "./src/javascript/helpers/modal/Fighter_modal.js":
+/***/ "./src/javascript/helpers/modal/Fighter_modal.ts":
 /*!*******************************************************!*\
-  !*** ./src/javascript/helpers/modal/Fighter_modal.js ***!
+  !*** ./src/javascript/helpers/modal/Fighter_modal.ts ***!
   \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal */ "./src/javascript/helpers/modal/Modal.js");
-/* harmony import */ var _fighterView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../fighterView */ "./src/javascript/fighterView.js");
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Modal_1 = __webpack_require__(/*! ./Modal */ "./src/javascript/helpers/modal/Modal.ts");
+var fighterView_1 = __webpack_require__(/*! ../../fighterView */ "./src/javascript/fighterView.ts");
+var Fighter_modal = /** @class */ (function (_super) {
+    __extends(Fighter_modal, _super);
+    function Fighter_modal(fighter, preparation) {
+        var _this = _super.call(this) || this;
+        _this.fighter = Object.assign({}, fighter);
+        _this.preparation = preparation;
+        _this.modal.style.background = "url('./resources/choose-character.img') no-repeat";
+        _this.modal.style.backgroundSize = "800px 500px";
+        var h = _this.createElement({
+            tagName: 'h2'
+        });
+        h.innerHTML = " ";
+        _this.modal.appendChild(h);
+        var left = _this.createElement({
+            tagName: 'div',
+            className: 'left'
+        });
+        left.append(new fighterView_1.default(fighter).getElement());
+        var right = _this.createElement({
+            tagName: 'div',
+            className: 'right'
+        });
+        right.append(_this.createIndicator(_this.fighter.attack, 'attack'), _this.createIndicator(_this.fighter.defense, 'defense'), _this.createIndicator(_this.fighter.health, 'health'));
+        _this.modal.append(left, right);
+        _this.modal.append(_this.createButton());
+        return _this;
+    }
+    Fighter_modal.prototype.createIndicator = function (point, name) {
+        var _this = this;
+        var elem = this.createElement({
+            tagName: 'div',
+            className: 'indicator'
+        });
+        var block = this.createElement({
+            tagName: 'div',
+            className: 'inline'
+        });
+        block.innerHTML = name;
+        var counter = this.createElement({
+            tagName: 'span',
+            className: 'counter'
+        });
+        counter.innerHTML = point;
+        var minus = this.createElement({
+            tagName: 'span',
+            className: 'minus'
+        });
+        var plus = this.createElement({
+            tagName: 'span',
+            className: 'plus'
+        });
+        var countBlock = this.createElement({
+            tagName: 'div',
+            className: 'countBlock'
+        });
+        countBlock.append(minus, counter, plus);
+        plus.addEventListener('click', function () {
+            if (point == 1)
+                minus.style.opacity = '1';
+            _this.fighter[name]++;
+            point++;
+            counter.innerHTML = point;
+        });
+        minus.addEventListener('click', function () {
+            switch (point) {
+                case 1:
+                    break;
+                case 2:
+                    minus.style.opacity = '0.5';
+                    _this.fighter[name]--;
+                    point--;
+                    break;
+                default:
+                    _this.fighter[name]--;
+                    point--;
+            }
+            counter.innerHTML = point;
+        });
+        elem.append(block, countBlock);
+        return elem;
+    };
+    Fighter_modal.prototype.createButton = function () {
+        var _this = this;
+        var block = this.createElement({
+            tagName: 'div',
+            className: 'btnBlock'
+        });
+        var myBTN = this.createElement({
+            tagName: 'button',
+            className: 'btn'
+        });
+        myBTN.className += ' btn-primary';
+        myBTN.innerHTML = 'my fighter';
+        myBTN.addEventListener('click', function () {
+            _this.preparation.your = _this.fighter;
+            Modal_1.default.clearModals();
+        });
+        var enemyBTN = this.createElement({
+            tagName: 'button',
+            className: 'btn',
+        });
+        enemyBTN.className += ' btn-primary';
+        enemyBTN.innerHTML = 'enemy fighter';
+        enemyBTN.addEventListener('click', function () {
+            _this.preparation.enemy = _this.fighter;
+            Modal_1.default.clearModals();
+        });
+        block.append(myBTN, enemyBTN);
+        return block;
+    };
+    return Fighter_modal;
+}(Modal_1.default));
+exports.default = Fighter_modal;
 
-
-class Fighter_modal extends _Modal__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(fighter, preparation) {
-    super();
-    Object.assign(this.fighter = {}, fighter);
-    this.preparation = preparation;
-    this.modal.style.background = "url('./resources/choose-character.img') no-repeat";
-    this.modal.style.backgroundSize = "800px 500px";
-    let h = this.createElement({
-      tagName: 'h2'
-    });
-    h.innerHTML = ` `;
-    this.modal.appendChild(h);
-    let left = this.createElement({
-      tagName: 'div',
-      className: 'left'
-    });
-    left.append(new _fighterView__WEBPACK_IMPORTED_MODULE_1__["default"](fighter).element);
-    let right = this.createElement({
-      tagName: 'div',
-      className: 'right'
-    });
-    right.append(this.createIndicator(this.fighter.attack, 'attack'), this.createIndicator(this.fighter.defense, 'defense'), this.createIndicator(this.fighter.health, 'health'));
-    this.modal.append(left, right);
-    this.modal.append(this.createButton());
-  }
-
-  createIndicator(point, name) {
-    let elem = this.createElement({
-      tagName: 'div',
-      className: 'indicator'
-    });
-    let block = this.createElement({
-      tagName: 'div',
-      className: 'inline'
-    });
-    block.innerHTML = name;
-    let counter = this.createElement({
-      tagName: 'span',
-      className: 'counter'
-    });
-    counter.innerHTML = point;
-    let minus = this.createElement({
-      tagName: 'span',
-      className: 'minus'
-    });
-    let plus = this.createElement({
-      tagName: 'span',
-      className: 'plus'
-    });
-    let countBlock = this.createElement({
-      tagName: 'div',
-      className: 'countBlock'
-    });
-    countBlock.append(minus, counter, plus);
-    plus.addEventListener('click', () => {
-      if (point == 1) minus.style.opacity = '1';
-      this.fighter[name]++;
-      point++;
-      counter.innerHTML = point;
-    });
-    minus.addEventListener('click', () => {
-      switch (point) {
-        case 1:
-          break;
-
-        case 2:
-          minus.style.opacity = '0.5';
-          this.fighter[name]--;
-          point--;
-          break;
-
-        default:
-          this.fighter[name]--;
-          point--;
-      }
-
-      counter.innerHTML = point;
-    });
-    elem.append(block, countBlock);
-    return elem;
-  }
-
-  createButton() {
-    let block = this.createElement({
-      tagName: 'div',
-      className: 'btnBlock'
-    });
-    let myBTN = this.createElement({
-      tagName: 'button',
-      className: 'btn'
-    });
-    myBTN.className += ' btn-primary';
-    myBTN.innerHTML = 'my fighter';
-    myBTN.addEventListener('click', () => {
-      this.preparation.your = this.fighter;
-      _Modal__WEBPACK_IMPORTED_MODULE_0__["default"].clearModals();
-    });
-    let enemyBTN = this.createElement({
-      tagName: 'button',
-      className: 'btn'
-    });
-    enemyBTN.className += ' btn-primary';
-    enemyBTN.innerHTML = 'enemy fighter';
-    enemyBTN.addEventListener('click', () => {
-      this.preparation.enemy = this.fighter;
-      _Modal__WEBPACK_IMPORTED_MODULE_0__["default"].clearModals();
-    });
-    block.append(myBTN, enemyBTN);
-    return block;
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Fighter_modal);
 
 /***/ }),
 
-/***/ "./src/javascript/helpers/modal/Modal.js":
+/***/ "./src/javascript/helpers/modal/Modal.ts":
 /*!***********************************************!*\
-  !*** ./src/javascript/helpers/modal/Modal.js ***!
+  !*** ./src/javascript/helpers/modal/Modal.ts ***!
   \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../view */ "./src/javascript/view.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var view_1 = __webpack_require__(/*! ../../view */ "./src/javascript/view.ts");
+var Modal = /** @class */ (function (_super) {
+    __extends(Modal, _super);
+    function Modal() {
+        var _this = _super.call(this) || this;
+        Modal.clearModals();
+        _this.modal = _this.createElement({
+            tagName: 'div',
+            className: 'modal'
+        });
+        _this.close = _this.createElement({
+            tagName: 'div',
+            className: 'close'
+        });
+        _this.modal.append(_this.close);
+        _this.close.addEventListener('click', function () {
+            Modal.clearModals();
+        });
+        document.body.appendChild(_this.modal);
+        return _this;
+    }
+    Modal.clearModals = function (callback) {
+        var modals = document.getElementsByClassName('modal');
+        if (modals.length > 0) {
+            for (var i = 0; i < modals.length; i++)
+                modals[i].remove();
+        }
+        if (callback)
+            callback();
+    };
+    return Modal;
+}(view_1.default));
+exports.default = Modal;
 
-
-class Modal extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor() {
-    super();
-
-    _defineProperty(this, "modal", void 0);
-
-    Modal.clearModals();
-    this.modal = this.createElement({
-      tagName: 'div',
-      className: 'modal'
-    });
-    this.close = this.createElement({
-      tagName: 'div',
-      className: 'close'
-    });
-    this.modal.append(this.close);
-    this.close.addEventListener('click', () => {
-      Modal.clearModals();
-    });
-    document.body.appendChild(this.modal);
-  }
-
-  static clearModals(callback) {
-    let modals = document.getElementsByClassName('modal');
-    if (modals.length > 0) [...modals].forEach(elem => elem.remove());
-    if (callback) callback();
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Modal);
 
 /***/ }),
 
-/***/ "./src/javascript/helpers/modal/Text_modal.js":
+/***/ "./src/javascript/helpers/modal/Text_modal.ts":
 /*!****************************************************!*\
-  !*** ./src/javascript/helpers/modal/Text_modal.js ***!
+  !*** ./src/javascript/helpers/modal/Text_modal.ts ***!
   \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal */ "./src/javascript/helpers/modal/Modal.js");
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Modal_1 = __webpack_require__(/*! ./Modal */ "./src/javascript/helpers/modal/Modal.ts");
+var Text_modal = /** @class */ (function (_super) {
+    __extends(Text_modal, _super);
+    function Text_modal(header, text, callback) {
+        var _this = _super.call(this) || this;
+        var h = _this.createElement({
+            tagName: 'h2',
+            className: 'text_modal_h2'
+        });
+        h.innerHTML = header;
+        var div = _this.createElement({
+            tagName: 'div',
+            className: 'text_modal_text'
+        });
+        div.innerHTML = text;
+        var divForBtn = _this.createElement({
+            tagName: 'div',
+            className: 'divForBtn'
+        });
+        var btn = _this.createElement({
+            tagName: 'button',
+            className: 'text_modal_button'
+        });
+        divForBtn.append(btn);
+        btn.innerHTML = 'OK';
+        btn.addEventListener('click', function () {
+            Modal_1.default.clearModals(callback);
+        });
+        _this.modal.append(h, div, divForBtn);
+        if (callback)
+            _this.close.addEventListener('click', callback);
+        return _this;
+    }
+    Text_modal.showInformation = function (header, text, callback) {
+        document.body.append(new Text_modal(header, text, callback).modal);
+    };
+    return Text_modal;
+}(Modal_1.default));
+exports.Text_modal = Text_modal;
 
-class Text_modal extends _Modal__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(header, text, callback) {
-    super();
-    let h = this.createElement({
-      tagName: 'h2',
-      className: 'text_modal_h2'
-    });
-    h.innerHTML = header;
-    let div = this.createElement({
-      tagName: 'div',
-      className: 'text_modal_text'
-    });
-    div.innerHTML = text;
-    let divForBtn = this.createElement({
-      tagName: 'div',
-      className: 'divForBtn'
-    });
-    let btn = this.createElement({
-      tagName: 'button',
-      classname: 'text_modal_button'
-    });
-    divForBtn.append(btn);
-    btn.innerHTML = 'OK';
-    btn.addEventListener('click', () => {
-      _Modal__WEBPACK_IMPORTED_MODULE_0__["default"].clearModals(callback);
-    });
-    this.modal.append(h, div, divForBtn);
-    if (callback) this.close.addEventListener('click', callback);
-  }
-
-  static showInformation(header, text, callback) {
-    document.body.append(new Text_modal(header, text, callback).modal);
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Text_modal);
 
 /***/ }),
 
-/***/ "./src/javascript/services/MyRandom.js":
+/***/ "./src/javascript/services/MyRandom.ts":
 /*!*********************************************!*\
-  !*** ./src/javascript/services/MyRandom.js ***!
+  !*** ./src/javascript/services/MyRandom.ts ***!
   \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-class MyRandom {
-  static randomFloatNumber({
-    min,
-    max
-  }) {
-    return (Math.random() * (max - min) + min).toFixed(1);
-  }
 
-  static randomIntNumber({
-    min,
-    max
-  }) {
-    return (Math.random() * (max - min) + min).toFixed(0);
-  }
+Object.defineProperty(exports, "__esModule", { value: true });
+var MyRandom = /** @class */ (function () {
+    function MyRandom() {
+    }
+    MyRandom.randomFloatNumber = function (_a) {
+        var min = _a.min, max = _a.max;
+        return (Math.random() * (max - min) + min).toFixed(1);
+    };
+    MyRandom.randomIntNumber = function (_a) {
+        var min = _a.min, max = _a.max;
+        return ((Math.random() * (max - min) + min).toFixed(0));
+    };
+    return MyRandom;
+}());
+exports.default = MyRandom;
 
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (MyRandom);
 
 /***/ }),
 
-/***/ "./src/javascript/services/fightersService.js":
+/***/ "./src/javascript/services/fightersService.ts":
 /*!****************************************************!*\
-  !*** ./src/javascript/services/fightersService.js ***!
+  !*** ./src/javascript/services/fightersService.ts ***!
   \****************************************************/
-/*! exports provided: fightersService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fightersService", function() { return fightersService; });
-/* harmony import */ var _helpers_apiHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/apiHelper */ "./src/javascript/helpers/apiHelper.js");
 
-
-class FightersService {
-  async getFighters() {
-    try {
-      const endpoint = 'fighters.json';
-      const apiResult = await Object(_helpers_apiHelper__WEBPACK_IMPORTED_MODULE_0__["callApi"])(endpoint, 'GET');
-      return JSON.parse(atob(apiResult.content));
-    } catch (error) {
-      throw error;
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-  }
-
-  async getFighterDetails(_id) {
-    try {
-      const endpoint = `details/fighter/${_id}.json`;
-      const apiResult = await Object(_helpers_apiHelper__WEBPACK_IMPORTED_MODULE_0__["callApi"])(endpoint, 'GET');
-      return JSON.parse(atob(apiResult.content));
-    } catch (error) {
-      throw error;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var apiHelper_1 = __webpack_require__(/*! ../helpers/apiHelper */ "./src/javascript/helpers/apiHelper.ts");
+var FightersService = /** @class */ (function () {
+    function FightersService() {
     }
-  }
+    FightersService.prototype.getFighters = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var endpoint, apiResult, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        endpoint = 'fighters.json';
+                        return [4 /*yield*/, apiHelper_1.callApi(endpoint, 'GET')];
+                    case 1:
+                        apiResult = _a.sent();
+                        return [2 /*return*/, JSON.parse(atob(apiResult.content))];
+                    case 2:
+                        error_1 = _a.sent();
+                        throw error_1;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FightersService.prototype.getFighterDetails = function (_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var endpoint, apiResult, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        endpoint = "details/fighter/" + _id + ".json";
+                        return [4 /*yield*/, apiHelper_1.callApi(endpoint, 'GET')];
+                    case 1:
+                        apiResult = _a.sent();
+                        return [2 /*return*/, JSON.parse(atob(apiResult.content))];
+                    case 2:
+                        error_2 = _a.sent();
+                        throw error_2;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return FightersService;
+}());
+exports.fightersService = new FightersService();
 
-}
-
-const fightersService = new FightersService();
 
 /***/ }),
 
-/***/ "./src/javascript/view.js":
+/***/ "./src/javascript/view.ts":
 /*!********************************!*\
-  !*** ./src/javascript/view.js ***!
+  !*** ./src/javascript/view.ts ***!
   \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-class View {
-  constructor() {
-    _defineProperty(this, "element", void 0);
-  }
+Object.defineProperty(exports, "__esModule", { value: true });
+var View = /** @class */ (function () {
+    function View() {
+    }
+    View.prototype.createElement = function (_a) {
+        var tagName = _a.tagName, _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.attributes, attributes = _c === void 0 ? {} : _c;
+        var element = document.createElement(tagName);
+        if (className)
+            element.classList.add(className);
+        Object.keys(attributes).forEach(function (key) { return element.setAttribute(key, attributes[key]); });
+        return element;
+    };
+    View.prototype.getElement = function () {
+        return this.element;
+    };
+    View.prototype.setElement = function (elem) {
+        this.element = elem;
+    };
+    return View;
+}());
+exports.default = View;
 
-  createElement({
-    tagName,
-    className = '',
-    attributes = {}
-  }) {
-    const element = document.createElement(tagName);
-    if (className) element.classList.add(className);
-    Object.keys(attributes).forEach(key => element.setAttribute(key, attributes[key]));
-    return element;
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (View);
 
 /***/ }),
 

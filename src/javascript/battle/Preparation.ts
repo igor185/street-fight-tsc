@@ -1,31 +1,34 @@
 import Battle from './Battle';
+import {Fighter} from "../Fighter";
 
-class Preparation {
-
+export default class Preparation {
+    _your;
+    _enemy;
+    btn;
     get your() {
         return this._your;
     };
-    set your(fighter) {
+    set your(fighter: Fighter) {
         document.getElementById('firstChoose').innerHTML = `Your: ${fighter.name}`;
         this._your = fighter;
         if (this._your && this._enemy && !this.btn) {
-            this.printBTN();
+            this._printBTN();
         }
     };
 
     get enemy() {
         return this._enemy;
     };
-    set enemy(fighter) {
+    set enemy(fighter: Fighter) {
         document.getElementById('secondChoose').innerHTML = `Enemy: ${fighter.name}`;
         this._enemy = fighter;
         if (this._your && this._enemy && !this.btn) {
-            this.printBTN();
+            this._printBTN();
         }
     };
 
-    printBTN() {
-        let elem = document.getElementById('choosed')
+    private _printBTN(): void {
+        let elem = document.getElementById('choosed');
         elem.innerHTML = '';
 
         this.btn = document.createElement('button');
@@ -35,8 +38,5 @@ class Preparation {
             new Battle(this._your, this._enemy);
         });
         elem.append(this.btn);
-
     }
 }
-
-export default Preparation;

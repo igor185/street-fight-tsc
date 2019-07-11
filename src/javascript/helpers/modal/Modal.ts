@@ -1,6 +1,7 @@
 import View from '../../view'
 class Modal extends View {
-    modal;
+    modal: HTMLElement;
+    close: HTMLElement;
 
     constructor() {
         super();
@@ -24,10 +25,12 @@ class Modal extends View {
     }
 
 
-    static clearModals(callback) {
-        let modals = document.getElementsByClassName('modal');
-        if (modals.length > 0)
-            [...modals].forEach(elem => elem.remove());
+    static clearModals(callback?: ()=> void): void {
+        let modals: HTMLCollection = document.getElementsByClassName('modal');
+        if (modals.length > 0) {
+            for(let i = 0;i<modals.length;i++)
+                modals[i].remove();
+        }
         if (callback)
             callback();
     }
