@@ -36,6 +36,7 @@ export class Text_modal extends Modal {
         if (callback)
             this.close.addEventListener('click', callback);
     }
+
     static showInformation(header, text, callback?) {
         document.body.append(new Text_modal(header, text, callback).modal);
     }

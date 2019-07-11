@@ -1,6 +1,6 @@
 class Indicator {
     fighter;
-    _health;
+    private _health;
     elem;
     indicator;
     span;
@@ -19,8 +19,8 @@ class Indicator {
         this.elem.append(this.span, this.indicator);
     }
 
-    hit(point) {
-        point = +point;
+    hit(point: string | number) {
+        point = <number> point;
         if (point < 0) return {
             end: false,
             damage: 0

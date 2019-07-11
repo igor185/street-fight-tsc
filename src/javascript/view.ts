@@ -1,9 +1,9 @@
-class View {
-    public element: HTMLElement;
+import IView from "./interface/IView";
 
-    createElement<T extends {tagName:string, className?:string, attributes?: object}>(obj: T): HTMLElement {
-        const {tagName, className = '', attributes = {}} = obj;
+export default class View implements IView {
+    private element: HTMLElement;
 
+    createElement({tagName, className='', attributes = {}}: { tagName: string, className?: string, attributes?: object }): HTMLElement {
         const element: HTMLElement = document.createElement(tagName);
         if (className)
             element.classList.add(className);
@@ -11,13 +11,12 @@ class View {
 
         return element;
     }
-    getElement(): HTMLElement{
+
+    getElement(): HTMLElement {
         return this.element;
     }
-    setElement(elem: HTMLElement): void{
+
+    setElement(elem: HTMLElement): void {
         this.element = elem;
     }
 }
-
-
-export default View;

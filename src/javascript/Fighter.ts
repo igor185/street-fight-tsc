@@ -15,7 +15,7 @@ export class Fighter implements IFighter {
         this.source = source;
     }
 
-    addDetails({attack, defense, health}): void {
+    addDetails({attack, defense, health}: { attack: number, defense: number, health: number }): void {
         this.attack = attack;
         this.defense = defense;
         this.health = health;
@@ -25,7 +25,7 @@ export class Fighter implements IFighter {
         return this.attack * MyRandom.randomFloatNumber(1, 2);
     };
 
-    getBlockPower = (): number =>{
+    getBlockPower = (): number => {
         return this.defense * MyRandom.randomFloatNumber(1, 2);
     };
 }

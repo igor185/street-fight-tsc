@@ -2,10 +2,10 @@ import Battle from './Battle';
 import {Fighter} from "../Fighter";
 
 export default class Preparation {
-    _your;
-    _enemy;
+    private _your;
+    private _enemy;
     btn;
-    get your() {
+    get your():Fighter {
         return this._your;
     };
     set your(fighter: Fighter) {
@@ -16,7 +16,7 @@ export default class Preparation {
         }
     };
 
-    get enemy() {
+    get enemy():Fighter {
         return this._enemy;
     };
     set enemy(fighter: Fighter) {

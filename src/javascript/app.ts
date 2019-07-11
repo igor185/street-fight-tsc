@@ -14,11 +14,11 @@ class App {
     static loadingElement: HTMLElement = document.getElementById('loading-overlay');
     static information: HTMLElement = document.getElementById('informationBlock');
 
-    async startApp(){
+    async startApp(): Promise<void> {
         try {
             App.loadingElement.style.visibility = 'visible';
 
-            let fighters:Array<Fighter> = [...await fightersService.getFighters()].map(elem => new Fighter(elem));
+            let fighters: Array<Fighter> = [...await fightersService.getFighters()].map(elem => new Fighter(elem));
 
             const fightersView: FightersView = new FightersView(fighters);
             const fightersElement: HTMLElement = fightersView.getElement();

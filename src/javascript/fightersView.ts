@@ -24,11 +24,11 @@ export class FightersView extends View {
       return fighterView.getElement();
     });
 
-    this.element = this.createElement({
+    const element = super.createElement({
       tagName: 'div',
       className: 'fighters'
     });
-    this.element.append(...fighterElements);
+    element.append(...fighterElements);
   }
 
   private _handleFighterClick(fighter) {

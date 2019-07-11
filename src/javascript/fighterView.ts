@@ -1,27 +1,22 @@
 import View from './view';
-import IFighterView from './interface/IFighterView'
 import {Fighter} from "./Fighter";
 
-export default  class FighterView extends View implements IFighterView {
+export default class FighterView extends View {
 
     constructor(fighter, handleClick?) {
         super();
-        this.createFighter(fighter, handleClick);
+        this._createFighter(fighter, handleClick);
     }
 
-    public getElement():HTMLElement {
-        return super.getElement();
-    }
-
-    createFighter(fighter: Fighter, handleClick?: (fighter: Fighter) => void): void {
-        const {name, source} = fighter;
-        const nameElement = this._createName(name);
-        const imageElement = this._createImage(source);
+    private _createFighter(fighter: Fighter, handleClick?: (fighter: Fighter) => void): void {
+        const {name, source}:{name:string, source:string} = fighter;
+        const nameElement:HTMLSpanElement = this._createName(name);
+        const imageElement: HTMLElement = this._createImage(source);
 
         super.setElement(super.createElement({tagName: 'div', className: 'fighter'}));
         super.getElement().append(imageElement, nameElement);
         if (handleClick)
-            super.getElement().addEventListener('click', event => handleClick(fighter), false);
+            super.getElement().addEventListener('click', () => handleClick(fighter), false);
     }
 
     private _createName(name: string): HTMLSpanElement {
